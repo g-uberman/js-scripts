@@ -60,7 +60,6 @@ calciPriceTaxed();
 
 while (true) {
 if ( amount <= bank) {
-	console.log( "Item bought" );
 	numOfItems = numOfItems +1;
 	amount = amount + iprice;
 	}
