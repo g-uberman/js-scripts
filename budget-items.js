@@ -44,12 +44,12 @@ function printBank() {
 	}
 
 function printiPrice() {
-	ipricePrint = "Item price: $" + iprice.toFixed( 2 );
+	ipricePrint = "Item price: $" + iprice.toFixed( 2 ) + " (" + (tax_rate * 100).toFixed( 0 ) + "% tax included)";
 	console.log ( ipricePrint);
 	}
 
 function printItems() {
-	itemPrint = "Number of items bought: " + numOfItems;
+	itemPrint = "Max number of items bought: " + numOfItems;
 	console.log ( itemPrint);
 	}
 
@@ -67,8 +67,6 @@ else {
 	break;
 	}
 }
-
-// fixed2All();
 
 // PRINTS
 
