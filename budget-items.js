@@ -1,76 +1,54 @@
 // SCRIPT CALCULATING MAX AMOUNT OF ITEMS BUYABLE WITHIN BUDGET
-// FOR A GIVEN BUDGET, ITEM PRICE AND TAX VALUE
+// FOR INPUT BUDGET, ITEM PRICE AND TAX VALUE
 // by g-uberman on 2022.08.22
 
 // VALUES
 
-bank = prompt( "Budget" );
+var bank = prompt( "Budget" );
 bank = Number( bank );
 
-iprice = prompt ( "Item price (net)" );
+var iprice = prompt ( "Item price (net)" );
 iprice = Number ( iprice );
 
-tax_rate = prompt ( "Tax (%)" );
-tax_rate = Number ( tax_rate ) / 100;
+var taxRate = prompt ( "Tax (%)" );
+taxRate = Number ( taxRate ) / 100;
 
 var numOfItems = 0;
 var amount = iprice;
 
-// FUNCTIONS
+// INCLUDE TAX
 
-function calcAmountTaxed() {
-	amount = amount + ( amount * tax_rate );
+function calcTaxed() {
+	amount = amount + ( amount * taxRate );
+	iprice = iprice + ( iprice * taxRate );
 	}
 
-function calciPriceTaxed() {
-	iprice = iprice + ( iprice * tax_rate );
+// CALC MAX NUMBER OF ITEMS
+
+ function buyMax(){
+	while (true) {
+		if ( amount <= bank) {
+			numOfItems = numOfItems +1;
+			amount = amount + iprice;
+			}
+		else {
+			break;
+			}
+		}
 	}
 
-function fixed2All () {
-	bank = bank.toFixed( 2 );
-	iprice = iprice.toFixed( 2 );
-	amount = amount.toFixed( 2 );
-}
+// PRINTS
 
-function printTotal() {
+function printAll() {
 	total = numOfItems * iprice;
-	totalPrint = "Total price: $" + total.toFixed( 2 );
-	console.log( totalPrint);
-	}
-	
-function printBank() {
-	bankPrint = "Budget: $" + bank.toFixed( 2 );
-	console.log ( bankPrint );
-	}
-
-function printiPrice() {
-	ipricePrint = "Item price: $" + iprice.toFixed( 2 ) + " (" + (tax_rate * 100).toFixed( 0 ) + "% tax included)";
-	console.log ( ipricePrint);
-	}
-
-function printItems() {
-	itemPrint = "Max number of items bought: " + numOfItems;
-	console.log ( itemPrint);
+	console.log( "Total price: $" + total.toFixed( 2 ) );
+	console.log ( "Budget: $" + bank.toFixed( 2 ) );
+	console.log ( "Item price: $" + iprice.toFixed( 2 ) + " (" + (taxRate * 100).toFixed( 0 ) + "% tax included)" );
+	console.log ( "Max number of items bought: " + numOfItems );
 	}
 
 // RUNS
 
-calcAmountTaxed();
-calciPriceTaxed();
-
-while (true) {
-if ( amount <= bank) {
-	numOfItems = numOfItems +1;
-	amount = amount + iprice;
-	}
-else {
-	break;
-	}
-}
-
-// PRINTS
-
-printBank();
-printiPrice();
-printItems();
-printTotal();
+calcTaxed();
+buyMax();
+printAll();
